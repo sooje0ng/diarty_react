@@ -4,24 +4,26 @@ const DiaryEditor = () => {
     author: '',
     content: '',
   });
-
+  const handleChangeState = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
       <div>
         <input
+          name="author"
           value={state.author}
-          onChange={(e) => {
-            setState({ ...state, author: e.target.value });
-            //spread연산자 : author:원래 author의 값, content: 원래 content의 값. *순서는 바꾸면 안됨! 순서대로 업데이트되기 때문.
-          }}
+          onChange={handleChangeState}
         />
         <div>
           <textarea
+            name="content"
             value={state.content}
-            onChange={(e) => {
-              setState({ ...state, content: e.target.value });
-            }}
+            onChange={handleChangeState}
           />
         </div>
       </div>
