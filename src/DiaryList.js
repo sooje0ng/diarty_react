@@ -1,3 +1,5 @@
+import DiaryItem from './DiaryItem';
+
 const DiaryList = ({ diaryList }) => {
   console.log(diaryList);
   return (
@@ -7,15 +9,9 @@ const DiaryList = ({ diaryList }) => {
       <div>
         {diaryList.map(
           (
-            it //여기서 it은 diaryList의 하나하나의 객체가 들어옴.
+            it //여기서 it은 diaryList의 하나하나의 객체를 의미함.
           ) => (
-            <div key={it.id}>
-              <div>작성자 : {it.author}</div>
-              <div>일기 : {it.content}</div>
-              <div>감정 : {it.emotion}</div>
-              <div>작성 시간(ms) : {it.created_date}</div>
-              <br />
-            </div>
+            <DiaryItem key={it.id} {...it} /> //it이라는 모든 요소들이 DiaryItem의 props로 들어옴.
           )
         )}
       </div>
