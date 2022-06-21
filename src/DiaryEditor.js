@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react';
-const DiaryEditor = () => {
-  const authorInput = useRef();
-  const contentInput = useRef();
+import { useRef, useState } from 'react'; // useRef라는 훅(hook)은 DOM노드나 리액트 엘리먼트에 접근할 수 있게 해줌.
+
+const DiaryEditor = ({ onCreate }) => {
+  const authorInput = useRef(); //authorInput에 접근! 36째 줄 확인
+  const contentInput = useRef(); //contentInput에 접근! 44째 줄 확인
 
   const [state, setState] = useState({
     author: '',
@@ -25,14 +26,21 @@ const DiaryEditor = () => {
       contentInput.current.focus(); //입력창에 포커스를 줌
       return;
     }
+
+    onCreate(state.author, state.content, state.emotion);
     alert('저장 완료');
+    setState({
+      author: '',
+      content: '',
+      emotion: 1,
+    });
   };
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
       <div>
         <input
-          ref={authorInput}
+          ref={authorInput} //useRef import해와서 이렇게 사용할 수 있는거임
           name="author"
           value={state.author}
           onChange={handleChangeState}
@@ -40,7 +48,7 @@ const DiaryEditor = () => {
       </div>
       <div>
         <textarea
-          ref={contentInput}
+          ref={contentInput} //여기도!
           name="content"
           value={state.content}
           onChange={handleChangeState}

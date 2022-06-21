@@ -8,6 +8,7 @@ const DiaryItem = ({ author, content, created_date, emotion, id }) => {
         <br />
         <span className="date">{new Date(created_date).toLocaleString()}</span>
       </div>
+      <div className="content">{content}</div>
     </div>
   );
 };
