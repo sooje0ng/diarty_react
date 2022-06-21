@@ -51,10 +51,18 @@ function App() {
     setData(newDiaryList);
   };
 
+  const onEdit = (targetId, newContent) => {
+    setData(
+      data.map(
+        (it) => (it.id === targetId ? { ...it, content: newContent } : it) // 있던 리스트의 아이디들을 순회하면서, 파라미터로 보내준 타겟아이디와 일기의 아이디가 같으면 새로운 콘텐츠로 바꿔줌.
+      )
+    );
+  };
+
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList onRemove={onRemove} diaryList={data} />
+      <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
   );
 }
