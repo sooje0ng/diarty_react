@@ -1,8 +1,14 @@
-import { set } from 'mongoose';
 import { useEffect, useState } from 'react';
 
 const UnmountTest = () => {
-  return <div>Unmount Testing Component</div>;
+  useEffect(() => {
+    console.log('Mount!');
+
+    return () => {
+      //unmount시점에 실행되게 됨.
+      console.log('Unmount!');
+    };
+  });
 };
 const Lifecycle = () => {
   const [isVisible, setIsVisible] = useState(false);
